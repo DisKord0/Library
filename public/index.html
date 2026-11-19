@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bibliotheca</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="fondo" aria-hidden="true"></div>
+  <div class="antorcha izq" aria-hidden="true"></div>
+  <div class="antorcha der" aria-hidden="true"></div>
+  <div id="polvo" aria-hidden="true"></div>
+
+  <!-- Música de fondo: sube tu archivo a la carpeta public con el nombre musica.mp3 -->
+  <audio id="audio" src="musica.mp3" loop preload="auto"></audio>
+  <button id="musica" type="button" hidden title="Activar música" data-ic="notaOff"></button>
+
+  <!-- Portada: códice medieval cerrado con correa y sello -->
+  <div id="portada">
+    <div class="escena">
+      <div class="libro3d">
+        <div class="paginas">
+          <h3>Salve, viajero</h3>
+          <p>Inscribe tus libros en el códice y colócalos en el estante del reino.</p>
+        </div>
+        <div class="tapa">
+          <div class="frente">
+            <span class="esq a"></span><span class="esq b"></span><span class="esq c"></span><span class="esq d"></span>
+            <div class="marco">
+              <span class="emblema" data-ic="lis"></span>
+              <h2>Bibliotheca</h2>
+              <small>Códice de registros</small>
+            </div>
+            <div class="correa"><span class="sello" data-ic="lis"></span></div>
+          </div>
+          <div class="dorso"><p>Ex libris</p></div>
+        </div>
+      </div>
+    </div>
+    <button id="abrir" type="button"><span data-ic="libro"></span><span>Abrir el códice</span></button>
+    <p class="nota">Al romper el sello suena la música de fondo</p>
+  </div>
+
+  <!-- Aplicación -->
+  <div id="app" class="oculto">
+    <header>
+      <h1><span class="icono" data-ic="castillo"></span> <span class="titulo">Bibliotheca</span></h1>
+      <p>Cada libro que inscribes queda guardado en la base de datos y ocupa su lugar en el estante</p>
+      <div class="contador" id="contador"><span data-ic="pergamino"></span><span id="contador-txt">0 libros en la biblioteca</span></div>
+    </header>
+
+    <main>
+      <section class="ficha">
+        <h2 id="titulo-ficha">Pergamino de registro</h2>
+        <form id="form">
+          <label>Título <input name="titulo" required></label>
+          <label>Autor <input name="autor" required></label>
+          <label>ISBN <input name="isbn"></label>
+          <label>Año de publicación <input name="anio" type="number" min="0" max="2100"></label>
+          <label class="ancha">Categoría <select name="categoria" id="categoria"></select></label>
+          <button type="submit" id="guardar">Inscribir libro en el estante</button>
+          <button type="button" id="cancelar" hidden>Cancelar edición</button>
+        </form>
+        <div id="msg"></div>
+      </section>
+
+      <section>
+        <div class="filtros" id="filtros">
+        <div class="buscador">
+          <span class="lupa" data-ic="lupa"></span>
+          <input type="search" id="buscar" placeholder="Buscar por título o autor…" autocomplete="off">
+        </div>
+        <div class="categorias" id="categorias" role="group" aria-label="Filtrar por categoría"></div>
+        <div class="resumen">
+          <span id="resultado"></span>
+          <button type="button" id="limpiar" class="btn-sec chico" hidden><span data-ic="cruz"></span><span>Limpiar filtros</span></button>
+        </div>
+      </div>
+      <div class="librero" id="librero"></div>
+      </section>
+
+      <section id="detalle"><p class="hint">Toca un libro para sacarlo del estante y leer su pergamino.</p></section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
